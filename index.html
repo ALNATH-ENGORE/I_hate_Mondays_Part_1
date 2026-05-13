@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>I hate Moondays!</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #d8c4a3;
+      color: #111;
+    }
+
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.16) 0 1px, transparent 1px),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.12) 0 1px, transparent 1px),
+        #efe1c6;
+      background-size: 34px 34px;
+      border-left: 1px solid #b9a98c;
+      border-right: 1px solid #b9a98c;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: #075e54;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    }
+
+    .topbar-icons
+    {
+      display: flex;
+      gap: 33.5px;
+      margin-left: auto;
+    }
+
+    .icon
+    {
+      width: 30.5px;
+      height: 30.5px;
+      filter: brightness(0) invert(1);
+      cursor: pointer;
+    }
+
+    .back-arrow
+    {
+      display: flex;
+      align-items: center;
+      padding-right: 10px;
+    }
+
+    .back-icon
+    {
+      width: 29.5px;
+      height: 29.5px;
+      filter: brightness(0) invert(1);
+      cursor: pointer;
+    }
+
+
+    .avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: #d9fdd3;
+      color: #075e54;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 23.5px;
+      flex: 0 0 auto;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .avatar img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .chat-title {
+      line-height: 1.2;
+    }
+
+    .chat-title h1 {
+      margin: 0;
+      font-size: 27.5px;
+      font-weight: 600;
+    }
+
+    .chat-title p {
+      margin: 3px 0 0;
+      font-size: 20.5px;
+      opacity: 0.85;
+    }
+
+    .chat {
+      padding: 18px 16px 34px;
+    }
+
+    .date-chip
+    {
+      width: fit-content;
+      max-width: 78%;
+      margin: 12px auto;
+      padding: 7px 12px;
+      border-radius: 8px;
+      background: #000000;
+      color: #ffffff;
+      font-size: 18px;
+      text-align: center;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.12);
+    }
+
+    .system-chip
+    {
+      width: fit-content;
+      max-width: 78%;
+      margin: 12px auto;
+      padding: 7px 12px;
+      border-radius: 8px;
+      background: #818181;
+      color: #efefef;
+      font-size: 18px;
+      text-align: center;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.12);
+    }
+
+    .system-chip {
+      background: #818181;
+      font-style: normal;
+    }
+
+    .message-row {
+      display: flex;
+      margin: 10px 0;
+      clear: both;
+    }
+
+    .message-row.sent {
+      justify-content: flex-end;
+      margin-left: 60px ;
+    }
+
+    .message-row.received {
+      justify-content: flex-start;
+      margin-right: 60px;
+    }
+
+    .bubble {
+      max-width: 67.5%;
+      padding: 12px 14px 10px;
+      border-radius: 15px;
+      position: relative;
+      font-size: 20px;
+      line-height: 1.42;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+      white-space: normal;
+    }
+
+    .sent .bubble {
+      background: #d9fdd3;
+      border-top-right-radius: 0;
+    }
+
+    .received .bubble {
+      background: #fff;
+      border-top-left-radius: 0;
+    }
+
+    .name {
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 3px;
+      display: none;
+    }
+
+    .sent .name {
+      color: #128c7e;
+    }
+
+    .received .name {
+      color: #8b5cf6;
+    }
+
+    .meta {
+      float: right;
+      margin-left: 15.5px;
+      margin-top: 9.5px;
+      font-size: 16.5px;
+      color: #667781;
+      white-space: nowrap;
+    }
+
+    .ticks {
+      color: #34b7f1;
+      font-weight: 700;
+      margin-left: 3px;
+      letter-spacing: -2px;
+    }
+
+    .image-bubble img {
+      display: block;
+      max-width: 100%;
+      border-radius: 7px;
+      margin-bottom: 6px;
+    }
+
+    .img-row
+    {
+      display: flex;
+      gap: 6px;
+    }
+
+    .img-row img
+    {
+      width: 48%;
+      border-radius: 7px;
+      object-fit: cover;
+    }
+
+    .caption {
+      white-space: normal;
+    }
+
+    .table-card {
+      max-width: 72%;
+      margin: 12px auto;
+      background: #fff;
+      border-radius: 9px;
+      padding: 10px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.18);
+      font-size: 13px;
+      overflow: hidden;
+    }
+
+    .table-title {
+      text-align: center;
+      font-weight: 700;
+      color: #54656f;
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 11.5px;
+    }
+
+    th, td {
+      border: 1px solid #d6d6d6;
+      padding: 6px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+
+    .formula {
+      display: block;
+      text-align: center;
+      font-weight: 600;
+      margin: 7px 0;
+      letter-spacing: 0.2px;
+    }
+
+    @media print {
+      body {
+        background: #efe1c6;
+      }
+
+      .page {
+        max-width: none;
+        width: 100%;
+        border: 0;
+      }
+
+      .topbar {
+        position: static;
+      }
+
+      .bubble {
+        break-inside: avoid;
+      }
+
+      .table-card {
+        break-inside: avoid;
+      }
+
+      .message-row {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="back-arrow">
+        <img src="media/back_arrow.png" class="back-icon">
+      </div>
+      <div class="avatar">
+        <img src="media/Dp.jpeg" alt="Dp">
+      </div>
+      <div class="chat-title">
+        <h1>Ashutosh Astrologer</h1>
+        <p>online</p>
+      </div>
+      <div class="topbar-icons">
+      <img src="media/video_filled.png" class="icon">
+      <img src="media/phone.png" class="icon">
+      <img src="media/more.png" class="icon">
+      </div>
+    </div>
+
+    <div class="chat">
+
+      <div class="date-chip">Yesterday</div>
+      <div class="system-chip">You set the nickname to "I hate Moondays!"</div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Hey Ashu! Do you like Mondays?
+          <span class="meta">18:33 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Oh I hate them!
+          <span class="meta">18:34</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Right? I feel you!
+          <span class="meta">18:35 <span class="ticks">✓✓</span></span>
+          </div>
+      </div>
+          
+      <div class="message-row sent">
+        <div class="bubble">
+            <div class="name">Shanky</div>
+          After a whole weekend, I feel so disappointed wondering why Mondays exist?
+          <span class="meta">18:35 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          But you know, I realized something strange - I did not know why Monday is called "Monday"!
+          <span class="meta">18:36</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Like I know what is a 'day', but what does the 'Mon' in Monday stand for?
+          <span class="meta">18:36</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Damn!
+          <span class="meta">18:37 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Wait, so Sunday is pretty obvious, right?
+          It's a day named after the Sun.
+          <span class="meta">18:37 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          So, maybe 'Mon' stands for Moon?
+          <span class="meta">18:38 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          You know, you are in the right direction Shanky!
+          <span class="meta">18:38</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Yeah, I think so!
+          <span class="meta">18:39 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>  
+          Then Saturday is probably named after Saturn?
+          <span class="meta">18:40 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Yup Yup!
+          <span class="meta">18:41</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          But wait, other than Saturday, Sunday and Monday, the other days don't really make sense, do they?
+          <span class="meta">18:42 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          What is the 'Tue' in a Tuesday?
+          <span class="meta">18:42 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Yeah, we need to delve a little deeper for this. So basically
+          <span class="meta">18:44</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          And Wednesday is meant for people to wed? Should I get married on a Wednesday?
+          <span class="meta">18:44 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          That's ridiculous. Wait let me complete what I was saying!
+          <span class="meta">18:45</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          I read about it and the answer would simply blow your mind. I can bet on
+          <span class="meta">18:46</span>
+        </div>
+      </div>
+
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          And are people meant to eat fried chicken on Friday?
+          <span class="meta">18:47 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Now you are simply fooling around! Will you listen to me?
+          <span class="meta">18:48</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Sorry sorry 😛!
+          <span class="meta">18:49 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Please carry on!
+          <span class="meta">18:49 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+
+      <div class="system-chip">Laughs while dieting on KFC</div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Okay since you have raised this point yourself, let me answer this in a discussion format.
+          <span class="meta">18:50</span>
+        </div>
+      </div>
+
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Your point is: Saturday, Sunday and Monday seem to have acquired their names from Saturn, Sun and Moon.
+          <span class="meta">18:51</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+            While the rest seems arbitrary.
+          <span class="meta">18:51</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Exactly!
+          <span class="meta">18:52 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Right! But what about the Hindi days of the week?
+          <span class="meta">18:53</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Oh rightttt!
+          <span class="meta">18:54 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Yes!
+          <span class="meta">18:54 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          All the days of the week are named after the Sun, the Moon and the planets. How strange!
+          <span class="meta">18:55 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Feels like I guessed it right!
+          <span class="meta">18:55 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Indeed! Just so that the reader knows what we are talking about
+          <span class="meta">18:56</span>
+        </div>
+      </div>
+
+      <div class="system-chip">Fourth Wall broken</div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          see this table where I associate the Hindi names of the days to the Hindi names of planets.
+          <span class="meta">18:57</span>
+        </div>
+      </div>
+
+
+      <div class="table-card">
+        <div class="table-title">Hindi days of the week</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Days of the week<br>(vaar = day)</th>
+              <th>Hindi planet</th>
+              <th>English planet</th>
+              <th>English day</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Somavaar</td><td>Soma</td><td>Moon</td><td>Monday</td></tr>
+            <tr><td>Mangalvaar</td><td>Mangal</td><td>Mars</td><td>Tuesday</td></tr>
+            <tr><td>Budhvaar</td><td>Budh</td><td>Mercury</td><td>Wednesday</td></tr>
+            <tr><td>Guruvaar</td><td>Guru</td><td>Jupiter</td><td>Thursday</td></tr>
+            <tr><td>Shukravaar</td><td>Shukra</td><td>Venus</td><td>Friday</td></tr>
+            <tr><td>Shanivaar</td><td>Shani</td><td>Saturn</td><td>Saturday</td></tr>
+            <tr><td>Ravivaar</td><td>Ravi</td><td>Sun</td><td>Sunday</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Right!
+          <span class="meta">18:58 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          But could this not be arbitrary?
+          <span class="meta">18:59 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Arbitrary?
+          <span class="meta">19:00 </span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          There are 7 days of the week. So just name them by any 7 things your culture considers holy?
+          <span class="meta">19:01 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          This may not have anything to do with the English days, right?
+          <span class="meta">19:01 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          That's definitely possible.
+          <span class="meta">19:02</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          However, what if I show you a similar list for the French days and corresponding planets?
+          <span class="meta">19:03</span>
+        </div>
+      </div>
+
+      <div class="system-chip">Flexing half-learned Français</div>
+
+      <div class="table-card">
+        <div class="table-title">French days of the week</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Days of the week<br>(di = day)</th>
+              <th>French planet</th>
+              <th>English day</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Lundi</td><td>Lune</td><td>Monday</td></tr>
+            <tr><td>Mardi</td><td>Mars</td><td>Tuesday</td></tr>
+            <tr><td>Mercredi</td><td>Mercure</td><td>Wednesday</td></tr>
+            <tr><td>Jeudi</td><td>Jupiter</td><td>Thursday</td></tr>
+            <tr><td>Vendredi</td><td>Vénus</td><td>Friday</td></tr>
+            <tr><td>Samedi</td><td><span style="color: #cb4125;"> N/A</span></td><td>Saturday</td></tr>
+            <tr><td>Dimanche</td><td><span style="color: #cb4125;"> N/A</span></td><td>Sunday</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          And in Italiano?
+          <span class="meta">19:05</span>
+        </div>
+      </div>
+
+      <div class="system-chip">High on Margherita</div>
+
+      <div class="table-card">
+        <div class="table-title">Italian days of the week</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Days of the week<br>(dì = day)</th>
+              <th>Italian planet</th>
+              <th>English day</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Lunedì</td><td>Luna</td><td>Monday</td></tr>
+            <tr><td>Martedì</td><td>Marte</td><td>Tuesday</td></tr>
+            <tr><td>Mercoledì</td><td>Mercurio</td><td>Wednesday</td></tr>
+            <tr><td>Giovedì</td><td>Giove</td><td>Thursday</td></tr>
+            <tr><td>Venerdì</td><td>Venere</td><td>Friday</td></tr>
+            <tr><td>Sabato</td><td><span style="color: #cb4125;"> N/A</span></td><td>Saturday</td></tr>
+            <tr><td>Domenica</td><td><span style="color: #cb4125;"> N/A</span></td><td>Sunday</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Tu parles Español?
+          <span class="meta">19:06</span>
+        </div>
+      </div>
+
+      <div class="system-chip">That isn't Spanish! Españçais?? Cries in Duolingo</div>
+
+      <div class="table-card">
+        <div class="table-title">Spanish days of the week</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Days of the week</th>
+              <th>Spanish planet</th>
+              <th>English day</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Lunes</td><td>Luna</td><td>Monday</td></tr>
+            <tr><td>Martes</td><td>Marte</td><td>Tuesday</td></tr>
+            <tr><td>Miércoles</td><td>Mercurio</td><td>Wednesday</td></tr>
+            <tr><td>Jueves</td><td>Júpiter</td><td>Thursday</td></tr>
+            <tr><td>Viernes</td><td>Venus</td><td>Friday</td></tr>
+            <tr><td>Sábado</td><td><span style="color: #cb4125;"> N/A</span></td><td>Saturday</td></tr>
+            <tr><td>Domingo</td><td><span style="color: #cb4125;"> N/A</span></td><td>Sunday</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Wait! Wait! Enough flexing!
+          <span class="meta">19:07 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          I get what you are trying to say.
+          <span class="meta">19:08 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Well actually Japanese and Korean have the same association with planets albeit in a slightly different manner.
+          <span class="meta">19:10</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          While Arabic and Chinese instead associate the names with counting numbers.
+          <span class="meta">19:11</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Although China
+          <span class="meta">19:12</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Ore wa nihonjin janai desu, Sensei!
+          <span class="meta">19:13 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="system-chip">Flex! Flex Flex! More flex rolls!</div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          One thing at a time!
+          <span class="meta">19:14 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Oops! My bad! 😛
+          <span class="meta">19:15</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Okay I understand that this thing is worldwide, but I have 2 questions:
+          <span class="meta">19:17 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          <ul>
+          <li> What are these N/A in Saturdays and Sundays?</li>
+          <br>
+            <li> Why in every culture - Monday (associated with the Moon) comes before Tuesday (associated with Mars) and so on? </li>
+          </ul>
+          <span class="meta">19:18 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      
+    <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Buckle up!
+          <span class="meta">19:20</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Things are going to get interesting!
+          <span class="meta">19:21</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Yes sir!🫡
+          <span class="meta">19:22 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Let me rephrase your 2nd question.
+          <span class="meta">19:23</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          You want to know what is this <br>
+          <br>
+          Moon → Mars → Mercury → Jupiter → Venus → Saturn → Sun <br>
+          <br>
+          pattern, right?
+          <span class="meta">19:23</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Correct!
+          <span class="meta">19:24 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          This has to do with the speed of the planets.
+          <span class="meta">19:25</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Can you tell me the planets in order, from slowest to fastest?
+          <span class="meta">19:26</span>
+        </div>
+      </div>
+ 
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Sure! From slowest to fastest:<br>
+          <br>
+          Neptune →  Uranus →  Saturn →  Jupiter →  Mars →  Earth →  Venus →  Mercury<br>
+          <span class="meta">19:27 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          And why is the order like this?
+          <span class="meta">19:28</span>
+        </div>
+      </div>
+      
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          That's very easy!
+          <span class="meta">19:29 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          We know that all planets move in (approximate) circles with the Sun at the center.
+          <span class="meta">19:29 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+
+      <div class="message-row sent">
+        <div class="bubble image-bubble">
+            <div class="name">Shanky</div>
+            <img src="media/Heliocentric.jpg" alt="Heliocentric model">
+            <div class="caption">
+            Neptune is the farthest away from our Sun. Before that is Uranus, then Saturn and so on.
+            </div>
+            <span class="meta">19:31<span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          The farther a planet is, the slower travels in its orbit.
+          <span class="meta">19:32 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Naturally, Neptune is the slowest while Mercury is the fastest.
+          <span class="meta">19:32 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Perfect!
+          <span class="meta">19:33</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Btw, have you seen them with your naked eyes?
+          <span class="meta">19:34</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Yeah they can be seen from anywhere.
+          <span class="meta">19:35 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          They look like bright stars, except they don't twinkle!
+          <span class="meta">19:35 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          And can you see them all?
+          <span class="meta">19:36</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          No, not Uranus & Neptune. Too faint to be seen!
+          <span class="meta">19:37 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          And of course, no one can see Earth without leaving Earth!
+          <span class="meta">19:37 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Great! So let me remove Uranus, Neptune & Earth from your list & modify it a bit.
+          <span class="meta">19:38</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          From slowest to fastest:<br>
+          <br>
+          Saturn →  Jupiter →  Mars → Sun →  Venus →  Mercury  →  Moon <br>
+          
+          <span class="meta">19:39</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          You included Sun & Moon in the list of planets?
+          <span class="meta">19:40 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Also, I can understand why Moon is the fastest, but Sun
+          <span class="meta">19:40 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Wait Wait!
+          <span class="meta">19:41</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          For now, take this list for granted!
+          <span class="meta">19:42</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Let's finish discussing the main topic today. We'll discuss the loose ends tomorrow, okie?
+          <span class="meta">19:42</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Okie sir!🫡
+          <span class="meta">19:43 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          2 final pieces of info before I blow your mind:
+          <span class="meta">19:44</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          <ul>
+              <li>Our ancestors (worldwide) had the concept of "24 hours in a day".</li>
+              <br>
+              <li>A day used to start from Sunrise today and end at Sunrise tomorrow.</li>
+          </ul>
+          <span class="meta">19:45</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Perfect!
+          <span class="meta">19:46 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          What our ancestors did was to <b> assign each hour of a day to be 'ruled' by a planet</b>.
+          <span class="meta">19:47</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Ruled?
+          <span class="meta">19:48 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          'Ruled' because everyone believed the planets to be their respective Gods.
+          <span class="meta">19:49</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Makes sense!
+          <span class="meta">19:50 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          The assignment was as follows:
+          <span class="meta">19:51</span>
+        </div>
+      </div>
+
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          <ul>
+          <li> Start with the slowest planet Saturn. </li>
+          <br>
+          <li> Assign 1st hour of Day 1 to Saturn. </li>
+          <br>
+          <li> Assign 2nd hour Day 1 to the next slowest planet - Jupiter. </li>
+          <br>
+          <li> The 3rd hour goes to Mars, and so on. </li>
+          <br>
+          <li> The 7th hour goes to the Moon. </li>
+          <br>
+          <li> Assign the 8th hour once again to Saturn.</li>
+          <br>
+          <li> Repeat the pattern.</li>
+          </ul>
+          <span class="meta">19:53</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Sounds confusing!😵‍💫
+          <span class="meta">19:54 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Look at this table to see what I mean. Each column represents a day, so read it <b> columnwise </b>.
+          <span class="meta">19:55</span>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-title">Ruling Planets</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Hour of the day</th>
+              <th>Day 1</th>
+              <th>Day 2</th>
+              <th>Day 3</th>
+              <th>Day 4</th>
+              <th>Day 5</th>
+              <th>Day 6</th>
+              <th>Day 7</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> <td><b>1st</b></td> <td><b>SATURN</b></td> <td><b>SUN</b></td> <td><b>MOON</b></td> <td><b>MARS</b></td> <td><b>MERCURY</b></td> <td><b>JUPITER</b></td> <td><b>VENUS</b></td> </tr>
+            <tr><td>2nd</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td></tr>
+            <tr><td>3rd</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td></tr>
+            <tr><td>4th</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td></tr>
+            <tr><td>5th</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td></tr>
+            <tr><td>6th</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td></tr>
+            <tr><td>7th</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td></tr>
+            <tr><td>8th</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td></tr>
+            <tr><td>9th</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td></tr>
+            <tr><td>10th</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td></tr>
+            <tr><td>11th</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td></tr>
+            <tr><td>12th</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td></tr>
+            <tr><td>13th</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td></tr>
+            <tr><td>14th</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td></tr>
+            <tr><td>15th</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td></tr>
+            <tr><td>16th</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td></tr>
+            <tr><td>17th</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td></tr>
+            <tr><td>18th</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td></tr>
+            <tr><td>19th</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td></tr>
+            <tr><td>20th</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td></tr>
+            <tr><td>21st</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td></tr>
+            <tr><td>22nd</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td></tr>
+            <tr><td>23rd</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td></tr>
+            <tr><td>24th</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Observe:
+          <br>
+          <ul>
+            <li>24th hour of Day 1 ends with Mars.</li>
+            <br>
+            <li>Hence 25th hour (= 1st hour of Day 2) goes to the Sun.</li>
+            <br>
+            <li>24th hour of the Day 2 ends with Mercury, so 1st hour of Day 3 goes to the Moon.</li>
+          </ul>
+          <span class="meta">19:57</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          and so on.
+          <span class="meta">19:58</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Can you see the pattern emerging?
+          <span class="meta">19:58</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          My goodness! This completely blew me away!
+          <span class="meta">19:59 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Yes, clearly I can see the pattern!
+          <span class="meta">20:00 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Basically if I look at the 1st hour of each day, I see <br>
+          <br>
+          Moon → Mars → Mercury → Jupiter → Venus → Saturn → Sun
+          <span class="meta">20:01 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Exactly!
+          <span class="meta">20:02</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          It was decided that the planet that rules the 1st hour of a day would be the <b>Daylord</b>.
+          <span class="meta">20:02</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          And the day will be named after this planet.
+          <span class="meta">20:03</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          I could have never thought about this!
+          <span class="meta">20:04 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Neither would I have!
+          <span class="meta">20:04</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Wow I'm all energized!🤩
+          <span class="meta">20:05 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Let's tie up the loose ends.
+          <span class="meta">20:05 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          We'll discuss this tomorrow. I'm very sleepy!
+          <span class="meta">20:06</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          I was stargazing the entire night. TTYL!
+          <span class="meta">20:06</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Thou hast betrayed me the umpteenth time!😭
+          <span class="meta">20:06 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Sweet dreams!😴
+          <span class="meta">20:06</span>
+        </div>
+      </div>
+
+      <div class="date-chip">Today</div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          You awake!
+          <span class="meta">02:12 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Hello!
+          <span class="meta">04:43 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          What do you call the guy with the 'n-word' who loves to have milkshakes? 
+          <span class="meta">07:34 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Sha'n'kyyyyy!!🤪
+          <span class="meta">07:34 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+           😇😇😇😇😇
+          <span class="meta">09:52 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Have you gone mad?
+          <span class="meta">10:02</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+           Finally you're awake!
+          <span class="meta">10:02 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Don't you sleep?🙄
+          <span class="meta">10:03</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+           I couldn't, I'm so excited!
+          <span class="meta">10:04 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+           Let's wrap it up completely.
+          <span class="meta">10:04 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Right!
+          <span class="meta">10:05</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Coming to your point: Why did I include Sun & Moon in the list of planets?
+          <span class="meta">10:05</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Yes please!
+          <span class="meta">10:06 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          You said, planets look like bright stars but don't twinkle, and you're correct!
+          <span class="meta">10:07</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          But there's a much better way to distinguish them.
+          <span class="meta">10:07</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Consider the belt of <b>Orion</b>. It has 3 stars in a straight line, right?
+          <span class="meta">10:08</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Right!
+          <span class="meta">10:08 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      
+     <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Year after year, you will see them maintain the straight line.
+          <span class="meta">10:09</span>
+        </div>
+      </div>
+      
+     <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Relative to one another, stars never change their positions.
+          <span class="meta">10:09</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Exactly! I remember, Orion looked the same when I was a kid just as it looks now!
+          <span class="meta">10:10 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+     <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Correct!
+          <span class="meta">10:10</span>
+        </div>
+      </div>
+      
+     <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          However, if you look at Jupiter today, & then 6 months later, you would see it has changed its position relative to the background stars.
+          <span class="meta">10:11</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Really? How come I have never noticed!
+          <span class="meta">10:12 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+     <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Pretty sure you have noticed another object that changes position very fast.
+          <span class="meta">10:13</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Umm... Moon?
+          <span class="meta">10:14 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Precisely!
+          <span class="meta">10:15</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Moon rises approx 50 minutes late every day.
+          <span class="meta">10:16</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          So, if Taurus is behind the Moon today, you might find Gemini behind the Moon tomorrow.
+          <span class="meta">10:16</span>
+        </div>
+      </div>
+
+    <div class="message-row received">
+        <div class="bubble image-bubble">
+          <div class="name">Ashutosh</div>
+          <div class="img-row">
+            <img src="media/Moon_in_Taurus.jpg" alt="Moon in Taurus">
+            <img src="media/Moon_in_Gemini.jpg" alt="Moon in Gemini">
+          </div>
+          <div class="caption">
+           (Left) Moon is in front of a star in <b>Taurus</b> on Dec 5, 2025 at 7:10 pm<br>
+           <br> (Right) Next day at the same time, the Moon has moved to <b>Gemini</b>
+          </div>
+          <span class="meta">10:18</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          I see! This is why our ancestors considered Sun & Moon to be planets as well.
+          <span class="meta">10:19 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Exactly!
+          <span class="meta">10:20</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          The word planet comes from the Greek word 'planetes', which means "wanderer".
+          <span class="meta">10:20</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          The Sun, the Moon and the 5 'bright dots' seemed to wander in the sky.
+          <span class="meta">10:21</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          But how did they figure out that Saturn was slower than Jupiter?
+          <span class="meta">10:22 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Think about it! You should be able to tell from whatever we have discussed. 
+          <span class="meta">10:24</span>
+        </div>
+      </div>
+      
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Ah okay, I got it!
+          <span class="meta">10:25 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          So ... I am Shanky the great ancient astronomer!
+          <span class="meta">10:25 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Astrologer you mean!😌 
+          <span class="meta">10:26</span>
+        </div>
+      </div>
+      
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          😒
+          <span class="meta">10:27 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          😛
+          <span class="meta">10:27</span>
+        </div>
+      </div>
+      
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          And I observe that Saturn looks like a 'white dot', while Jupiter looks like a 'brown dot'.
+          <span class="meta">10:28 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+           And this 'white dot' actually takes longer time to change position in the sky than the 'brown dot'.
+          <span class="meta">10:28 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          which in turn takes a longer time than the 'red dot' I call Mars.
+          <span class="meta">10:29 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Hence, I come to the conclusion that Saturn is slower than Jupiter is slower than Mars & so on.
+          <span class="meta">10:30 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble image-bubble">
+          <div class="name">Shanky</div>
+          <div class="img-row">
+          <img src="media/Jup_behind_Sat_1.jpg" alt="Jupiter behind Saturn">
+          <img src="media/Jup_behind_Sat_2.jpg" alt="Jupiter catching up Saturn">
+          </div>
+          <div class="img-row">
+          <img src="media/Sat_behind_Jup_1.jpg" alt="Jupiter crossed Saturn">
+          <img src="media/Sat_behind_Jup_2.jpg" alt="Jupiter exceeds Saturn">
+          </div>
+          <div class="caption">
+          From Top Left to Bottom Right:<br>
+          <br>
+           (1) <b>Jupiter is behind Saturn</b>, both in the Sagittarius.<br>
+           (2) Jupiter is almost catching up with Saturn.<br>
+           (3) Jupiter crosses Saturn.<br>
+           (4) Both have moved into Capricornus, but <b>Jupiter moved faster than Saturn</b>.
+          </div>
+          <span class="meta">10:32 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Precisely!
+          <span class="meta">10:33</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          In fact this is exactly why the Geocentric model looks so similar to the Heliocentric model.
+          <span class="meta">10:34</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          See!
+          <span class="meta">10:34</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble image-bubble">
+          <div class="name">Ashutosh</div>
+          <img src="media/Geocentric.jpg" alt="Geocentric model">
+          <div class="caption">
+           Geocentric Model: with the Earth at the centre surrounded by 7 planets in <b>descending order of speed</b>, finally ending at the distant stars.
+          </div>
+          <span class="meta">10:36</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+           Wow! I have seen this before but now it makes more sense.
+          <span class="meta">10:37 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+           I presume our ancestors thought that the farther a planet is from Earth, the slower it moves across the sky. Hence this particular order! 
+          <span class="meta">10:38 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+    
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Yup Yup!
+          <span class="meta">10:39</span>
+        </div>
+      </div>
+      
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Anything else Monsieur?
+          <span class="meta">10:40</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Yeah one last thing!
+          <span class="meta">10:41 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          What's the deal with English though? Why did it seem to not work after Monday?
+          <span class="meta">10:42 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Oh right I completely forgot this!
+          <span class="meta">10:43</span>
+        </div>
+      </div>
+
+<div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Actually, if you speak any one of the Nordic languages - Danish, Swedish, Norwegian - you wouldn't have much of an issue.
+          <span class="meta">10:44</span>
+        </div>
+      </div>
+
+  <div class="table-card">
+        <div class="table-title">Nordic days of the week</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Days of the week<br> (dag = day)</th>
+              <th>Corresponding Norse Gods</th>
+              <th>English planet</th>
+              <th>English day</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Mandag</td><td>Máni</td><td>Moon</td><td>Monday</td></tr>
+            <tr><td>Tirsdag</td><td>Tyr</td><td>Mars</td><td>Tuesday</td></tr>
+            <tr><td>Onsdag</td><td>Odin</td><td>Mercury</td><td>Wednesday</td></tr>
+            <tr><td>Torsdag</td><td>Thor</td><td>Jupiter</td><td>Thursday</td></tr>
+            <tr><td>Fredag</td><td>Freya</td><td>Venus</td><td>Friday</td></tr>
+            <tr><td>Lørdag</td><td>Njord</td><td>Saturn</td><td>Saturday</td></tr>
+            <tr><td>Søndag</td><td>Sunna</td><td>Sun</td><td>Sunday</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Now these names sound very familiar right?
+          <span class="meta">10:46</span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Yeah they look almost like English day names!
+          <span class="meta">10:47 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          After the fall of Roman civilization, although the planetary naming convention was adopted, the corresponding Gods were changed to the local Gods of the region.
+          <span class="meta">10:48</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          In the Nordic countries, the Norse mythology made the following replacements:<br>
+          <br>
+          Mars → Tyr <br>
+          Mercury → Odin <br>
+          Jupiter → Thor <br>
+          Venus → Freya
+          <span class="meta">10:49</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Since England was colonized by Anglo-Saxons, they heavily influenced the structure of the modern English language - giving us the names of the days we have with us at present!
+          <span class="meta">10:50</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Interesting!
+          <span class="meta">10:51 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          And what about those "N/A" in the French / Italian / Spanish days?
+          <span class="meta">10:52 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          With the rise of Christianity in Europe, Sunday was changed to "Dies Dominica" which means "Day of the Lord".
+          <span class="meta">10:54</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          And Saturday was changed to "Sabbath" which means "Day of rest".
+          <span class="meta">10:55</span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          This is perhaps because Christians believe God created everything in 6 days, starting on a Sunday.
+          <span class="meta">10:56 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Then on the 7th day - which is a Saturday - He took rest!
+          <span class="meta">10:56 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Precisely!
+          <span class="meta">10:57</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Sabbath is called <b> Samedi / Sabato / Sábado </b> respectively in French / Italian / Spanish, while Dominica is called <b> Dimanche / Domenica / Domingo </b>.
+          <span class="meta">10:58</span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          And this explains why you wrote N/A in those European countries!
+          <span class="meta">10:59 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Because there are no planets associated with Sabbath and Domenica!
+          <span class="meta">10:59 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Exactly!
+          <span class="meta">11:00</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Wow, this was like an epiphany!
+          <span class="meta">11:01 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          I love Mondays!
+          <span class="meta">11:01 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="system-chip">You set the nickname to "I love Moondays"</div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Btw now that we are done, I wanted to ask you this
+          <span class="meta">11:03</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Have you seen planets through telescopes? Or travelled to a dark place to see the stars?
+          <span class="meta">11:04</span>
+        </div>
+      </div>
+      
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Sadly, No!
+          <span class="meta">11:05 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          You should do that once in a while. You know there are many such dark sites across the world even now!
+          <span class="meta">11:06</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+           Have you travelled?
+          <span class="meta">11:07 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Oh yeah quite often!
+          <span class="meta">11:08</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Let me show you a few pics we have taken.
+          <span class="meta">11:08</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble image-bubble">
+            <div class="name">Ashutosh</div>
+            <img src="media/Full_Moon_8_inch.jpg" alt="Full Moon">
+            <span class="meta">11:09</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble image-bubble">
+            <div class="name">Ashutosh</div>
+            <img src="media/Jup_Spot_and_Shadow.jpg" alt="Jupiter Spot & Shadow">
+            <span class="meta">11:10</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble image-bubble">
+          <div class="name">Ashutosh</div>
+          <img src="media/Milky_Way_Dehene.jpg" alt="Orion constellation">
+          <span class="meta">11:11</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Just beautiful!
+          <span class="meta">11:12 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Aren't they?
+          <span class="meta">11:13</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          If you happen to be in/around Mumbai, feel free to travel with our team <span style="color: red;"> &lt;Edurved Bla Bla&gt; on &lt;Bla Bla&gt; for &lt;Bla Bla Bla&gt; </span>
+          <span class="meta">11:15</span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Sure! Just remind me.
+          <span class="meta">11:16 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="system-chip">Capitalist Scums</div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Just to let the reader know, we also offer tutorials on how to use Stellarium so that you can use it yourself while stargazing. Discover deep sky objects like <span style="color: red;"> &lt;Bla Bla Bla&gt; </span>
+          <span class="meta">11:18</span>
+        </div>
+      </div>
+
+      <div class="system-chip">Marx & Engels sat on Fourth Wall, Marx & Engels had a Great Fall!</div> 
+
+    </div>
+  </div>
+</body>
+</html>
