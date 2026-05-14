@@ -95,6 +95,91 @@
       object-fit: cover;
     }
 
+    .dp-overlay
+    {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease;
+    }
+
+    .dp-overlay.active
+    {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .dp-full
+    {
+      max-width: 92%;
+      max-height: 92%;
+      border-radius: 12px;
+      transform: scale(0.75);
+      transition: transform 0.28s ease;
+    }
+
+    .dp-overlay.active .dp-full
+    {
+      transform: scale(1);
+    }
+
+    .more-wrapper
+    {
+      position: relative;
+    }
+
+    .more-menu
+    {
+      position: absolute;
+      top: 48px;
+      right: 0;
+      width: 220px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.22);
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 999;
+    }
+
+    .more-menu.active
+    {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .more-menu a
+    {
+      display: block;
+      padding: 15px 18px;
+      color: #111;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background 0.15s ease;
+    }
+
+    .more-menu a:hover 
+    {
+      background: #f3f4f6;
+    }
+
+    .more-menu hr 
+    {
+      margin: 0;
+      border: none;
+      border-top: 1px solid #ececec;
+    }
+
     .chat-title {
       line-height: 1.2;
     }
@@ -113,6 +198,26 @@
 
     .chat {
       padding: 18px 16px 34px;
+    }
+
+    .last-seen
+    {
+      margin: 3px 0 0;
+      font-size: 20.5px;
+      opacity: 0.85;
+      width: 245px;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+
+    }
+
+    .last-seen-text
+    {
+      display: inline-block;
+      transform: translateX(0);
+      animation: slideSeen 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation-delay: 5s;
     }
 
     .date-chip
@@ -287,7 +392,6 @@
     
     a
     {
-        color: #0645ad;
         text-decoration: none;
     }
     
@@ -323,6 +427,12 @@
         break-inside: avoid;
       }
     }
+
+    @keyframes slideSeen
+    {
+      from {transform: translateX(0);}
+      to {transform: translateX(-160px);} 
+    }
   </style>
 </head>
 
@@ -332,18 +442,31 @@
       <div class="back-arrow">
         <img src="media/back_arrow.png" class="back-icon">
       </div>
-      <div class="avatar">
+      <div class="avatar" onclick="openDP()">
         <img src="media/Dp.jpeg" alt="Dp">
       </div>
       <div class="chat-title">
         <h1>Ashutosh Astrologer</h1>
-        <p>last seen today at 11:23</p>
+        <p class="last-seen">
+        <span class="last-seen-text">last seen today at 11:23</span>
+        </p>
       </div>
       <div class="topbar-icons">
-      <img src="media/video_filled.png" class="icon">
-      <img src="media/phone.png" class="icon">
-      <img src="media/more.png" class="icon">
+      <a href="https://www.youtube.com/@edurVed" target="_blank"><img src="media/video_filled.png" class="icon"></a>
+      <a href="https://docs.google.com/spreadsheets/d/1Is9SUeAzdmuSoBqVmOdCtnRLq1gMAeZQf7OavkQPXLw/edit?gid=0#gid=0" target="_blank"><img src="media/phone.png" class="icon"></a>
+      <div class="more-wrapper">
+        <img src="media/more.png" class="icon" onclick="toggleMenu(event)">
+        <div class="more-menu" id ="moreMenu">
+          <a href="https://edurved.org/" target="_blank">About Us</a>
+          <hr>
+          <a href="https://www.instagram.com/edurved/" target="_blank">Instagram</a>
+          <hr>
+          <a href="https://www.youtube.com/@edurVed" target="_blank">YouTube</a>
+          <hr>
+          <a href="https://edurved.org/contact-us/" target="_blank">Contact Us</a>
+        </div>
       </div>
+     </div>
     </div>
 
     <div class="chat">
@@ -1570,7 +1693,7 @@
       <div class="message-row received">
         <div class="bubble">
           <div class="name">Ashutosh</div>
-          Consider the belt of <b>Orion</b>. It has 3 stars in a straight line, right?
+          Consider the belt of <a href="https://earthsky.org/constellations/orion-the-hunter-most-recognizable/" target="_blank">Orion</a>. It has 3 stars in a straight line, right?
           <span class="meta">10:08</span>
         </div>
       </div>
@@ -1667,7 +1790,7 @@
       <div class="message-row received">
         <div class="bubble">
           <div class="name">Ashutosh</div>
-          So, if Taurus is behind the Moon today, you might find Gemini behind the Moon tomorrow.
+          So, if <a href="https://earthsky.org/constellations/taurus-heres-your-constellation/" target="_blank">Taurus</a> is behind the Moon today, you might find <a href="https://www.space.com/16816-gemini-constellation.html" target="_blank">Gemini</a> behind the Moon tomorrow.
           <span class="meta">10:16</span>
         </div>
       </div>
@@ -1841,7 +1964,7 @@
       <div class="message-row received">
         <div class="bubble">
           <div class="name">Ashutosh</div>
-          In fact this is exactly why the Geocentric model looks so similar to the Heliocentric model.
+          In fact this is exactly why the <a href="https://www.space.com/geocentric-model" target="_blank">Geocentric model</a> looks so similar to the <a href="https://www.britannica.com/science/heliocentrism" target="_blank">Heliocentric model</a>.
           <span class="meta">10:34</span>
         </div>
       </div>
@@ -1979,7 +2102,7 @@
       <div class="message-row received">
         <div class="bubble">
           <div class="name">Ashutosh</div>
-          In the Nordic countries, the Norse mythology made the following replacements:<br>
+          In the Nordic countries, the <a href="https://youtu.be/BG8Lfpmb_mM" target="_blank">Norse mythology</a> made the following replacements:<br>
           <br>
           Mars → Tyr <br>
           Mercury → Odin <br>
@@ -2202,7 +2325,7 @@
       <div class="message-row received">
         <div class="bubble">
           <div class="name">Ashutosh</div>
-          If you happen to be in/around Mumbai, feel free to travel with our team  <a href="https://en.wikipedia.org/wiki/Isaac_Newton" target="_blank">Edurved</a>  on &lt;Bla Bla&gt; for &lt;Bla Bla Bla&gt; </span>
+          If you happen to be in/around Mumbai, feel free to travel with our team <a href="https://edurved.org/" target="_blank">Edurved</a> on many such stargazing events we conduct.</span>
           <span class="meta">11:15</span>
         </div>
       </div>
@@ -2210,7 +2333,7 @@
       <div class="message-row sent">
         <div class="bubble">
           <div class="name">Shanky</div>
-          Sure! Just remind me.
+          Sure! Just remind me, whenever you are going.
           <span class="meta">11:16 <span class="ticks">✓✓</span></span>
         </div>
       </div>
@@ -2229,5 +2352,31 @@
 
     </div>
   </div>
+
+<div class="dp-overlay" id="dpOverlay" onclick="closeDP()">
+  <img src="media/Dp.jpeg" class="dp-full">
+</div>
+
+<script>
+  function openDP()
+  {
+    document.getElementById("dpOverlay").classList.add("active");
+  }
+
+  function closeDP()
+  {
+    document.getElementById("dpOverlay").classList.remove("active");
+  }
+
+  function toggleMenu(event)
+  {
+    event.stopPropagation();
+    document.getElementById("moreMenu").classList.toggle("active");
+  }
+
+  document.addEventListener("click", function(){document.getElementById("moreMenu").classList.remove("active");})
+</script>
+
+
 </body>
 </html>
