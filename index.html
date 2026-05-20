@@ -87,6 +87,8 @@
       flex: 0 0 auto;
       overflow: hidden;
       padding: 0;
+      cursor: pointer;
+      transition: transform 0.2s ease;
     }
 
     .avatar img{
@@ -125,6 +127,52 @@
     }
 
     .dp-overlay.active .dp-full
+    {
+      transform: scale(1);
+    }
+
+    .chat-image
+    {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      user-select: none;
+    }
+
+    .chat-image :hover
+    {
+      transform: scale(1.02);
+    }
+
+    .image-overlay
+    {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease;
+    }
+
+    .image-overlay.active
+    {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .image-full
+    {
+      max-width: 92%;
+      max-height: 92%;
+      border-radius: 12px;
+      transform: scale(0.75);
+      transition: transform 0.28s ease;
+    }
+
+    .image-overlay.active .image-full
     {
       transform: scale(1);
     }
@@ -354,6 +402,13 @@
       box-shadow: 0 1px 2px rgba(0,0,0,0.18);
       font-size: 13px;
       overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .table-card:hover
+    {
+      transform: scale(1.02);
     }
 
     .table-title {
@@ -380,6 +435,53 @@
     th {
       background: #f1f5f9;
       font-weight: 700;
+    }
+
+    .table-overlay
+    {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease;
+    }
+
+    .table-overlay.active
+    {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .table-popup
+    {
+      background: white;
+      padding: 24px;
+      border-radius: 18px;
+      max-width: 94%;
+      max-height: 94%;
+      overflow: auto;
+      transform: scale(0.82);
+      transition: transform 0.25s ease;
+    }
+
+    .table-overlay.active .table-popup
+    {
+      transform: scale(1);
+    }
+
+    .table-popup table
+    {
+      font-size: 18px;
+    }
+
+    .table-popup th,.table-popup td
+    {
+      padding: 12px;
     }
 
     .formula {
@@ -1121,7 +1223,7 @@
       <div class="message-row sent">
         <div class="bubble image-bubble">
             <div class="name">Shanky</div>
-            <img src="media/Heliocentric.jpg" alt="Heliocentric model">
+            <img src="media/Heliocentric.jpg" alt="Heliocentric model" class="chat-image">
             <div class="caption">
             Neptune is the farthest away from our Sun. Before that is Uranus, then Saturn and so on.
             </div>
@@ -1799,8 +1901,8 @@
         <div class="bubble image-bubble">
           <div class="name">Ashutosh</div>
           <div class="img-row">
-            <img src="media/Moon_in_Taurus.jpg" alt="Moon in Taurus">
-            <img src="media/Moon_in_Gemini.jpg" alt="Moon in Gemini">
+            <img src="media/Moon_in_Taurus.jpg" alt="Moon in Taurus" class="chat-image">
+            <img src="media/Moon_in_Gemini.jpg" alt="Moon in Gemini" class="chat-image">
           </div>
           <div class="caption">
            (Left) Moon is in front of a star in <b>Taurus</b> on Dec 5, 2025 at 7:10 pm<br>
@@ -1934,12 +2036,12 @@
         <div class="bubble image-bubble">
           <div class="name">Shanky</div>
           <div class="img-row">
-          <img src="media/Jup_behind_Sat_1.jpg" alt="Jupiter behind Saturn">
-          <img src="media/Jup_behind_Sat_2.jpg" alt="Jupiter catching up Saturn">
+          <img src="media/Jup_behind_Sat_1.jpg" alt="Jupiter behind Saturn" class="chat-image">
+          <img src="media/Jup_behind_Sat_2.jpg" alt="Jupiter catching up Saturn" class="chat-image">
           </div>
           <div class="img-row">
-          <img src="media/Sat_behind_Jup_1.jpg" alt="Jupiter crossed Saturn">
-          <img src="media/Sat_behind_Jup_2.jpg" alt="Jupiter exceeds Saturn">
+          <img src="media/Sat_behind_Jup_1.jpg" alt="Jupiter crossed Saturn" class="chat-image">
+          <img src="media/Sat_behind_Jup_2.jpg" alt="Jupiter exceeds Saturn" class="chat-image">
           </div>
           <div class="caption">
           From Top Left to Bottom Right:<br>
@@ -1980,7 +2082,7 @@
       <div class="message-row received">
         <div class="bubble image-bubble">
           <div class="name">Ashutosh</div>
-          <img src="media/Geocentric.jpg" alt="Geocentric model">
+          <img src="media/Geocentric.jpg" alt="Geocentric model" class="chat-image">
           <div class="caption">
            Geocentric Model: with the Earth at the centre surrounded by 7 planets in <b>descending order of speed</b>, finally ending at the distant stars.
           </div>
@@ -2285,7 +2387,7 @@
       <div class="message-row received">
         <div class="bubble image-bubble">
             <div class="name">Ashutosh</div>
-            <img src="media/Full_Moon_8_inch.jpg" alt="Full Moon">
+            <img src="media/Full_Moon_8_inch.jpg" alt="Full Moon" class="chat-image">
             <span class="meta">11:09</span>
         </div>
       </div>
@@ -2293,7 +2395,7 @@
       <div class="message-row received">
         <div class="bubble image-bubble">
             <div class="name">Ashutosh</div>
-            <img src="media/Jup_Spot_and_Shadow.jpg" alt="Jupiter Spot & Shadow">
+            <img src="media/Jup_Spot_and_Shadow.jpg" alt="Jupiter Spot & Shadow" class="chat-image">
             <span class="meta">11:10</span>
         </div>
       </div>
@@ -2301,7 +2403,7 @@
       <div class="message-row received">
         <div class="bubble image-bubble">
           <div class="name">Ashutosh</div>
-          <img src="media/Milky_Way_Dehene.jpg" alt="Orion constellation">
+          <img src="media/Milky_Way_Dehene.jpg" alt="Orion constellation" class="chat-image">
           <span class="meta">11:11</span></span>
         </div>
       </div>
@@ -2353,8 +2455,16 @@
     </div>
   </div>
 
+<div class="image-overlay" id="imageOverlay">
+  <img src="" class="image-full" id="imagefull">
+</div>
+
 <div class="dp-overlay" id="dpOverlay" onclick="closeDP()">
   <img src="media/Dp.jpeg" class="dp-full">
+</div>
+
+<div class="table-overlay" id="tableOverlay">
+  <div class="table-popup" id="tablePopup"></div>
 </div>
 
 <script>
@@ -2368,6 +2478,27 @@
     document.getElementById("dpOverlay").classList.remove("active");
   }
 
+  const overlay = document.getElementById("imageOverlay");
+
+  const imageFull = document.getElementById("imagefull");
+
+  const chatImages = document.querySelectorAll(".chat-image");
+
+  chatImages.forEach(function(image) {
+
+    image.addEventListener("click", function() {
+      imageFull.src = image.src;
+      overlay.classList.add("active");
+
+    });
+
+  });
+
+  overlay.addEventListener("click", function()
+  {
+    overlay.classList.remove("active");
+  });
+
   function toggleMenu(event)
   {
     event.stopPropagation();
@@ -2375,6 +2506,24 @@
   }
 
   document.addEventListener("click", function(){document.getElementById("moreMenu").classList.remove("active");})
+
+  const tableCards = document.querySelectorAll(".table-card");
+
+  const tableOverlay = document.getElementById("tableOverlay");
+
+  const tablePopup = document.getElementById("tablePopup");
+ 
+  tableCards.forEach(function(card) {
+    card.addEventListener("click", function() {
+      tablePopup.innerHTML = card.innerHTML;
+      tableOverlay.classList.add("active");
+
+    });
+  });
+
+  tableOverlay.addEventListener("click", function() {tableOverlay.classList.remove("active");});
+  tablePopup.addEventListener("click", function(event) {event.stopPropagation();});
+
 </script>
 
 
