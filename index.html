@@ -55,6 +55,7 @@
       height: 30.5px;
       filter: brightness(0) invert(1);
       cursor: pointer;
+      transition: transform 0.2s ease;
     }
 
     .back-arrow
@@ -70,6 +71,12 @@
       height: 29.5px;
       filter: brightness(0) invert(1);
       cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .back-icon:active
+    {
+      transform: scale(0.9);
     }
 
 
@@ -542,7 +549,7 @@
   <div class="page">
     <div class="topbar">
       <div class="back-arrow">
-        <img src="media/back_arrow.png" class="back-icon">
+        <img src="media/back_arrow.png" class="back-icon" onclick="goBack()">
       </div>
       <div class="avatar" onclick="openDP()">
         <img src="media/Dp.jpeg" alt="Dp">
@@ -550,7 +557,7 @@
       <div class="chat-title">
         <h1>Ashutosh Astrologer</h1>
         <p class="last-seen">
-        <span class="last-seen-text">last seen today at 11:23</span>
+        <span class="last-seen-text">last seen today at 20:41</span>
         </p>
       </div>
       <div class="topbar-icons">
@@ -573,7 +580,7 @@
 
     <div class="chat">
 
-      <div class="date-chip">Yesterday</div>
+      <div class="date-chip">Today</div>
       <div class="system-chip">You set the nickname to "I hate Moondays!"</div>
 
       <div class="message-row sent">
@@ -871,7 +878,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Somavaar</td><td>Soma</td><td>Moon</td><td>Monday</td></tr>
+            <tr><td>Somvaar</td><td>Soma</td><td>Moon</td><td>Monday</td></tr>
             <tr><td>Mangalvaar</td><td>Mangal</td><td>Mars</td><td>Tuesday</td></tr>
             <tr><td>Budhvaar</td><td>Budh</td><td>Mercury</td><td>Wednesday</td></tr>
             <tr><td>Guruvaar</td><td>Guru</td><td>Jupiter</td><td>Thursday</td></tr>
@@ -1110,7 +1117,7 @@
           <ul>
           <li> What are these N/A in Saturdays and Sundays?</li>
           <br>
-            <li> Why in every culture - Monday (associated with the Moon) comes before Tuesday (associated with Mars) and so on? </li>
+            <li> Why in every culture - Somvaar (associated with the Moon) comes before Mangalvaar (associated with Mars) and so on? </li>
           </ul>
           <span class="meta">19:18 <span class="ticks">✓✓</span></span>
         </div>
@@ -1154,7 +1161,7 @@
           <div class="name">Ashutosh</div>
           You want to know what is this <br>
           <br>
-          Moon → Mars → Mercury → Jupiter → Venus → Saturn → Sun <br>
+          Soma → Mangal → Budh → Guru → Shukra → Shani → Ravi <br>
           <br>
           pattern, right?
           <span class="meta">19:23</span>
@@ -1318,8 +1325,7 @@
           <div class="name">Ashutosh</div>
           From slowest to fastest:<br>
           <br>
-          Saturn →  Jupiter →  Mars → Sun →  Venus →  Mercury  →  Moon <br>
-          
+          Shani →  Guru →  Mangal → Ravi →  Shukra →  Budh  →  Soma <br>
           <span class="meta">19:39</span>
         </div>
       </div>
@@ -1445,17 +1451,17 @@
         <div class="bubble">
           <div class="name">Ashutosh</div>
           <ul>
-          <li> Start with the slowest planet Saturn. </li>
+          <li> Start with the slowest planet Shani. </li>
           <br>
-          <li> Assign 1st hour of Day 1 to Saturn. </li>
+          <li> Assign 1st hour of Day 1 to Shani. </li>
           <br>
-          <li> Assign 2nd hour Day 1 to the next slowest planet - Jupiter. </li>
+          <li> Assign 2nd hour Day 1 to the next slowest planet - Guru. </li>
           <br>
-          <li> The 3rd hour goes to Mars, and so on. </li>
+          <li> The 3rd hour goes to Mangal, and so on. </li>
           <br>
-          <li> The 7th hour goes to the Moon. </li>
+          <li> The 7th hour goes to the Soma. </li>
           <br>
-          <li> Assign the 8th hour once again to Saturn.</li>
+          <li> Assign the 8th hour once again to Shani.</li>
           <br>
           <li> Repeat the pattern.</li>
           </ul>
@@ -1495,30 +1501,30 @@
             </tr>
           </thead>
           <tbody>
-            <tr> <td><b>1st</b></td> <td><b>SATURN</b></td> <td><b>SUN</b></td> <td><b>MOON</b></td> <td><b>MARS</b></td> <td><b>MERCURY</b></td> <td><b>JUPITER</b></td> <td><b>VENUS</b></td> </tr>
-            <tr><td>2nd</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td></tr>
-            <tr><td>3rd</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td></tr>
-            <tr><td>4th</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td></tr>
-            <tr><td>5th</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td></tr>
-            <tr><td>6th</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td></tr>
-            <tr><td>7th</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td></tr>
-            <tr><td>8th</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td></tr>
-            <tr><td>9th</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td></tr>
-            <tr><td>10th</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td></tr>
-            <tr><td>11th</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td></tr>
-            <tr><td>12th</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td></tr>
-            <tr><td>13th</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td></tr>
-            <tr><td>14th</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td></tr>
-            <tr><td>15th</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td></tr>
-            <tr><td>16th</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td></tr>
-            <tr><td>17th</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td></tr>
-            <tr><td>18th</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td></tr>
-            <tr><td>19th</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td></tr>
-            <tr><td>20th</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td></tr>
-            <tr><td>21st</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td></tr>
-            <tr><td>22nd</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td></tr>
-            <tr><td>23rd</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td><td>Mars</td><td>Mercury</td></tr>
-            <tr><td>24th</td><td>Mars</td><td>Mercury</td><td>Jupiter</td><td>Venus</td><td>Saturn</td><td>Sun</td><td>Moon</td></tr>
+          <tr> <td><b>1st</b></td> <td><b>SHANI</b></td> <td><b>RAVI</b></td> <td><b>SOMA</b></td> <td><b>MANGAL</b></td> <td><b>BUDH</b></td> <td><b>GURU</b></td> <td><b>SHUKRA</b></td> </tr>
+          <tr><td>2nd</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td></tr>
+          <tr><td>3rd</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td></tr>
+          <tr><td>4th</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td></tr>
+          <tr><td>5th</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td></tr>
+          <tr><td>6th</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td></tr>
+          <tr><td>7th</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td></tr>
+          <tr><td>8th</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td></tr>
+          <tr><td>9th</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td></tr>
+          <tr><td>10th</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td></tr>
+          <tr><td>11th</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td></tr>
+          <tr><td>12th</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td></tr>
+          <tr><td>13th</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td></tr>
+          <tr><td>14th</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td></tr>
+          <tr><td>15th</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td></tr>
+          <tr><td>16th</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td></tr>
+          <tr><td>17th</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td></tr>
+          <tr><td>18th</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td></tr>
+          <tr><td>19th</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td></tr>
+          <tr><td>20th</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td></tr>
+          <tr><td>21st</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td></tr>
+          <tr><td>22nd</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td></tr>
+          <tr><td>23rd</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td><td>Mangal</td><td>Budh</td></tr>
+          <tr><td>24th</td><td>Mangal</td><td>Budh</td><td>Guru</td><td>Shukra</td><td>Shani</td><td>Ravi</td><td>Soma</td></tr>
           </tbody>
         </table>
       </div>
@@ -1530,11 +1536,11 @@
           Observe:
           <br>
           <ul>
-            <li>24th hour of Day 1 ends with Mars.</li>
+            <li>24th hour of Day 1 ends with Mangal.</li>
             <br>
-            <li>Hence 25th hour (= 1st hour of Day 2) goes to the Sun.</li>
+            <li>Hence 25th hour (= 1st hour of Day 2) goes to the Ravi.</li>
             <br>
-            <li>24th hour of the Day 2 ends with Mercury, so 1st hour of Day 3 goes to the Moon.</li>
+            <li>24th hour of the Day 2 ends with Budh, so 1st hour of Day 3 goes to the Soma.</li>
           </ul>
           <span class="meta">19:57</span>
         </div>
@@ -1577,7 +1583,7 @@
           <div class="name">Shanky</div>
           Basically if I look at the 1st hour of each day, I see <br>
           <br>
-          Moon → Mars → Mercury → Jupiter → Venus → Saturn → Sun
+          Soma → Mangal → Budh → Guru → Shukra → Shani → Ravi
           <span class="meta">20:01 <span class="ticks">✓✓</span></span>
         </div>
       </div>
@@ -1622,18 +1628,10 @@
         </div>
       </div>
 
-      <div class="message-row sent">
+<div class="message-row sent">
         <div class="bubble">
           <div class="name">Shanky</div>
-          Wow I'm all energized!🤩
-          <span class="meta">20:05 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Let's tie up the loose ends.
+          This was like an epiphany!🤩
           <span class="meta">20:05 <span class="ticks">✓✓</span></span>
         </div>
       </div>
@@ -1641,698 +1639,18 @@
       <div class="message-row received">
         <div class="bubble">
           <div class="name">Ashutosh</div>
-          We'll discuss this tomorrow. I'm very sleepy!
-          <span class="meta">20:06</span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          I was stargazing the entire night. TTYL!
-          <span class="meta">20:06</span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Thou hast betrayed me the umpteenth time!😭
-          <span class="meta">20:06 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Sweet dreams!😴
-          <span class="meta">20:06</span>
-        </div>
-      </div>
-
-      <div class="date-chip">Today</div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          You awake!
-          <span class="meta">02:12 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Hello!
-          <span class="meta">04:43 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          What do you call the guy with the 'n-word' who loves to have milkshakes? 
-          <span class="meta">07:34 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Sha'n'kyyyyy!!🤪
-          <span class="meta">07:34 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-           😇😇😇😇😇
-          <span class="meta">09:52 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Have you gone mad?
-          <span class="meta">10:02</span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-           Finally you're awake!
-          <span class="meta">10:02 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Don't you sleep?🙄
-          <span class="meta">10:03</span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-           I couldn't, I'm so excited!
-          <span class="meta">10:04 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-           Let's wrap it up completely.
-          <span class="meta">10:04 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Right!
-          <span class="meta">10:05</span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Coming to your point: Why did I include Sun & Moon in the list of planets?
-          <span class="meta">10:05</span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Yes please!
-          <span class="meta">10:06 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          You said, planets look like bright stars but don't twinkle, and you're correct!
-          <span class="meta">10:07</span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          But there's a much better way to distinguish them.
-          <span class="meta">10:07</span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Consider the belt of <a href="https://earthsky.org/constellations/orion-the-hunter-most-recognizable/" target="_blank">Orion</a>. It has 3 stars in a straight line, right?
-          <span class="meta">10:08</span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Right!
-          <span class="meta">10:08 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-      
-     <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Year after year, you will see them maintain the straight line.
-          <span class="meta">10:09</span>
-        </div>
-      </div>
-      
-     <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Relative to one another, stars never change their positions.
-          <span class="meta">10:09</span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Exactly! I remember, Orion looked the same when I was a kid just as it looks now!
-          <span class="meta">10:10 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-     <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Correct!
-          <span class="meta">10:10</span>
-        </div>
-      </div>
-      
-     <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          However, if you look at Jupiter today, & then 6 months later, you would see it has changed its position relative to the background stars.
-          <span class="meta">10:11</span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Really? How come I have never noticed!
-          <span class="meta">10:12 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-     <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Pretty sure you have noticed another object that changes position very fast.
-          <span class="meta">10:13</span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Umm... Moon?
-          <span class="meta">10:14 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Precisely!
-          <span class="meta">10:15</span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Moon rises approx 50 minutes late every day.
-          <span class="meta">10:16</span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          So, if <a href="https://earthsky.org/constellations/taurus-heres-your-constellation/" target="_blank">Taurus</a> is behind the Moon today, you might find <a href="https://www.space.com/16816-gemini-constellation.html" target="_blank">Gemini</a> behind the Moon tomorrow.
-          <span class="meta">10:16</span>
-        </div>
-      </div>
-
-    <div class="message-row received">
-        <div class="bubble image-bubble">
-          <div class="name">Ashutosh</div>
-          <div class="img-row">
-            <img src="media/Moon_in_Taurus.jpg" alt="Moon in Taurus" class="chat-image">
-            <img src="media/Moon_in_Gemini.jpg" alt="Moon in Gemini" class="chat-image">
-          </div>
-          <div class="caption">
-           (Left) Moon is in front of a star in <b>Taurus</b> on Dec 5, 2025 at 7:10 pm<br>
-           <br> (Right) Next day at the same time, the Moon has moved to <b>Gemini</b>
-          </div>
-          <span class="meta">10:18</span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          I see! This is why our ancestors considered Sun & Moon to be planets as well.
-          <span class="meta">10:19 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Exactly!
-          <span class="meta">10:20</span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          The word planet comes from the Greek word 'planetes', which means "wanderer".
-          <span class="meta">10:20</span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          The Sun, the Moon and the 5 'bright dots' seemed to wander in the sky.
-          <span class="meta">10:21</span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          But how did they figure out that Saturn was slower than Jupiter?
-          <span class="meta">10:22 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Think about it! You should be able to tell from whatever we have discussed. 
-          <span class="meta">10:24</span>
-        </div>
-      </div>
-      
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Ah okay, I got it!
-          <span class="meta">10:25 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          So ... I am Shanky the great ancient astronomer!
-          <span class="meta">10:25 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Astrologer you mean!😌 
-          <span class="meta">10:26</span>
-        </div>
-      </div>
-      
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          😒
-          <span class="meta">10:27 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          😛
-          <span class="meta">10:27</span>
-        </div>
-      </div>
-      
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          And I observe that Saturn looks like a 'white dot', while Jupiter looks like a 'brown dot'.
-          <span class="meta">10:28 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-           And this 'white dot' actually takes longer time to change position in the sky than the 'brown dot'.
-          <span class="meta">10:28 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          which in turn takes a longer time than the 'red dot' I call Mars.
-          <span class="meta">10:29 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Hence, I come to the conclusion that Saturn is slower than Jupiter is slower than Mars & so on.
-          <span class="meta">10:30 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-     <div class="message-row sent">
-        <div class="bubble image-bubble">
-          <div class="name">Shanky</div>
-          <div class="img-row">
-          <img src="media/Jup_behind_Sat_1.jpg" alt="Jupiter behind Saturn" class="chat-image">
-          <img src="media/Jup_behind_Sat_2.jpg" alt="Jupiter catching up Saturn" class="chat-image">
-          </div>
-          <div class="img-row">
-          <img src="media/Sat_behind_Jup_1.jpg" alt="Jupiter crossed Saturn" class="chat-image">
-          <img src="media/Sat_behind_Jup_2.jpg" alt="Jupiter exceeds Saturn" class="chat-image">
-          </div>
-          <div class="caption">
-          From Top Left to Bottom Right:<br>
-          <br>
-           (1) <b>Jupiter is behind Saturn</b>, both in the Sagittarius.<br>
-           (2) Jupiter is almost catching up with Saturn.<br>
-           (3) Jupiter crosses Saturn.<br>
-           (4) Both have moved into Capricornus, but <b>Jupiter moved faster than Saturn</b>.
-          </div>
-          <span class="meta">10:32 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Precisely!
-          <span class="meta">10:33</span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          In fact this is exactly why the <a href="https://www.space.com/geocentric-model" target="_blank">Geocentric model</a> looks so similar to the <a href="https://www.britannica.com/science/heliocentrism" target="_blank">Heliocentric model</a>.
-          <span class="meta">10:34</span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          See!
-          <span class="meta">10:34</span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble image-bubble">
-          <div class="name">Ashutosh</div>
-          <img src="media/Geocentric.jpg" alt="Geocentric model" class="chat-image">
-          <div class="caption">
-           Geocentric Model: with the Earth at the centre surrounded by 7 planets in <b>descending order of speed</b>, finally ending at the distant stars.
-          </div>
-          <span class="meta">10:36</span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-           Wow! I have seen this before but now it makes more sense.
-          <span class="meta">10:37 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-      
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-           I presume our ancestors thought that the farther a planet is from Earth, the slower it moves across the sky. Hence this particular order! 
-          <span class="meta">10:38 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-    
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Yup Yup!
-          <span class="meta">10:39</span>
-        </div>
-      </div>
-      
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Anything else Monsieur?
-          <span class="meta">10:40</span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Yeah one last thing!
-          <span class="meta">10:41 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          What's the deal with English though? Why did it seem to not work after Monday?
-          <span class="meta">10:42 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Oh right I completely forgot this!
-          <span class="meta">10:43</span>
-        </div>
-      </div>
-
-<div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Actually, if you speak any one of the Nordic languages - Danish, Swedish, Norwegian - you wouldn't have much of an issue.
-          <span class="meta">10:44</span>
-        </div>
-      </div>
-
-  <div class="table-card">
-        <div class="table-title">Nordic days of the week</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Days of the week<br> (dag = day)</th>
-              <th>Corresponding Norse Gods</th>
-              <th>English planet</th>
-              <th>English day</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Mandag</td><td>Máni</td><td>Moon</td><td>Monday</td></tr>
-            <tr><td>Tirsdag</td><td>Tyr</td><td>Mars</td><td>Tuesday</td></tr>
-            <tr><td>Onsdag</td><td>Odin</td><td>Mercury</td><td>Wednesday</td></tr>
-            <tr><td>Torsdag</td><td>Thor</td><td>Jupiter</td><td>Thursday</td></tr>
-            <tr><td>Fredag</td><td>Freya</td><td>Venus</td><td>Friday</td></tr>
-            <tr><td>Lørdag</td><td>Njord</td><td>Saturn</td><td>Saturday</td></tr>
-            <tr><td>Søndag</td><td>Sunna</td><td>Sun</td><td>Sunday</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Now these names sound very familiar right?
-          <span class="meta">10:46</span>
-        </div>
-      </div>
-
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Yeah they look almost like English day names!
-          <span class="meta">10:47 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          After the fall of Roman civilization, although the planetary naming convention was adopted, the corresponding Gods were changed to the local Gods of the region.
-          <span class="meta">10:48</span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          In the Nordic countries, the <a href="https://youtu.be/BG8Lfpmb_mM" target="_blank">Norse mythology</a> made the following replacements:<br>
-          <br>
-          Mars → Tyr <br>
-          Mercury → Odin <br>
-          Jupiter → Thor <br>
-          Venus → Freya
-          <span class="meta">10:49</span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Since England was colonized by Anglo-Saxons, they heavily influenced the structure of the modern English language - giving us the names of the days we have with us at present!
-          <span class="meta">10:50</span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Interesting!
-          <span class="meta">10:51 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          And what about those "N/A" in the French / Italian / Spanish days?
-          <span class="meta">10:52 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          With the rise of Christianity in Europe, Sunday was changed to "Dies Dominica" which means "Day of the Lord".
-          <span class="meta">10:54</span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          And Saturday was changed to "Sabbath" which means "Day of rest".
-          <span class="meta">10:55</span>
-        </div>
-      </div>
-
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          This is perhaps because Christians believe God created everything in 6 days, starting on a Sunday.
-          <span class="meta">10:56 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Then on the 7th day - which is a Saturday - He took rest!
-          <span class="meta">10:56 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Precisely!
-          <span class="meta">10:57</span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Sabbath is called <b> Samedi / Sabato / Sábado </b> respectively in French / Italian / Spanish, while Dominica is called <b> Dimanche / Domenica / Domingo </b>.
-          <span class="meta">10:58</span>
-        </div>
-      </div>
-
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          And this explains why you wrote N/A in those European countries!
-          <span class="meta">10:59 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-     <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Because there are no planets associated with Sabbath and Domenica!
-          <span class="meta">10:59 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row received">
-        <div class="bubble">
-          <div class="name">Ashutosh</div>
-          Exactly!
-          <span class="meta">11:00</span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          Wow, this was like an epiphany!
-          <span class="meta">11:01 <span class="ticks">✓✓</span></span>
-        </div>
-      </div>
-
-      <div class="message-row sent">
-        <div class="bubble">
-          <div class="name">Shanky</div>
-          I love Mondays!
-          <span class="meta">11:01 <span class="ticks">✓✓</span></span>
+          I know!
+          <span class="meta">20:07</span>
         </div>
       </div>
 
       <div class="system-chip">You set the nickname to "I love Moondays"</div>
-
+  
       <div class="message-row received">
         <div class="bubble">
           <div class="name">Ashutosh</div>
-          Btw now that we are done, I wanted to ask you this
-          <span class="meta">11:03</span>
+          Btw, I wanted to ask you this
+          <span class="meta">20:07</span>
         </div>
       </div>
 
@@ -2340,7 +1658,7 @@
         <div class="bubble">
           <div class="name">Ashutosh</div>
           Have you seen planets through telescopes? Or travelled to a dark place to see the stars?
-          <span class="meta">11:04</span>
+          <span class="meta">20:08</span>
         </div>
       </div>
       
@@ -2348,7 +1666,7 @@
         <div class="bubble">
           <div class="name">Shanky</div>
           Sadly, No!
-          <span class="meta">11:05 <span class="ticks">✓✓</span></span>
+          <span class="meta">20:10 <span class="ticks">✓✓</span></span>
         </div>
       </div>
 
@@ -2356,7 +1674,7 @@
         <div class="bubble">
           <div class="name">Ashutosh</div>
           You should do that once in a while. You know there are many such dark sites across the world even now!
-          <span class="meta">11:06</span>
+          <span class="meta">20:12</span>
         </div>
       </div>
 
@@ -2364,7 +1682,7 @@
         <div class="bubble">
           <div class="name">Shanky</div>
            Have you travelled?
-          <span class="meta">11:07 <span class="ticks">✓✓</span></span>
+          <span class="meta">20:13 <span class="ticks">✓✓</span></span>
         </div>
       </div>
 
@@ -2372,7 +1690,7 @@
         <div class="bubble">
           <div class="name">Ashutosh</div>
           Oh yeah quite often!
-          <span class="meta">11:08</span>
+          <span class="meta">20:15</span>
         </div>
       </div>
 
@@ -2380,7 +1698,7 @@
         <div class="bubble">
           <div class="name">Ashutosh</div>
           Let me show you a few pics we have taken.
-          <span class="meta">11:08</span>
+          <span class="meta">20:15</span>
         </div>
       </div>
 
@@ -2388,7 +1706,7 @@
         <div class="bubble image-bubble">
             <div class="name">Ashutosh</div>
             <img src="media/Full_Moon_8_inch.jpg" alt="Full Moon" class="chat-image">
-            <span class="meta">11:09</span>
+            <span class="meta">20:16</span>
         </div>
       </div>
 
@@ -2396,7 +1714,7 @@
         <div class="bubble image-bubble">
             <div class="name">Ashutosh</div>
             <img src="media/Jup_Spot_and_Shadow.jpg" alt="Jupiter Spot & Shadow" class="chat-image">
-            <span class="meta">11:10</span>
+            <span class="meta">20:16</span>
         </div>
       </div>
 
@@ -2404,7 +1722,7 @@
         <div class="bubble image-bubble">
           <div class="name">Ashutosh</div>
           <img src="media/Milky_Way_Dehene.jpg" alt="Orion constellation" class="chat-image">
-          <span class="meta">11:11</span></span>
+          <span class="meta">20:17</span></span>
         </div>
       </div>
 
@@ -2412,7 +1730,7 @@
         <div class="bubble">
           <div class="name">Shanky</div>
           Just beautiful!
-          <span class="meta">11:12 <span class="ticks">✓✓</span></span>
+          <span class="meta">20:19 <span class="ticks">✓✓</span></span>
         </div>
       </div>
 
@@ -2420,7 +1738,7 @@
         <div class="bubble">
           <div class="name">Ashutosh</div>
           Aren't they?
-          <span class="meta">11:13</span>
+          <span class="meta">20:20</span>
         </div>
       </div>
 
@@ -2428,32 +1746,103 @@
         <div class="bubble">
           <div class="name">Ashutosh</div>
           If you happen to be in/around Mumbai, feel free to travel with our team <a href="https://edurved.org/" target="_blank">Edurved</a> on many such stargazing events we conduct.</span>
-          <span class="meta">11:15</span>
+          <span class="meta">20:22</span>
+        </div>
+      </div>
+
+      <div class="system-chip">Capitalist Scums</div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Hey let's fill up the gaps now!
+          <span class="meta">20:24 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          We'll discuss this tomorrow. I'm very sleepy!🥱
+          <span class="meta">20:25</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          I was stargazing the entire night. TTYL!
+          <span class="meta">20:26</span>
         </div>
       </div>
 
       <div class="message-row sent">
         <div class="bubble">
           <div class="name">Shanky</div>
-          Sure! Just remind me, whenever you are going.
-          <span class="meta">11:16 <span class="ticks">✓✓</span></span>
+          Thou hast betrayed me the umpteenth time!😭
+          <span class="meta">20:27 <span class="ticks">✓✓</span></span>
         </div>
       </div>
-
-      <div class="system-chip">Capitalist Scums</div>
 
       <div class="message-row received">
         <div class="bubble">
           <div class="name">Ashutosh</div>
-          Just to let the reader know, we also offer tutorials on how to use Stellarium so that you can use it yourself while stargazing. Discover deep sky objects like <span style="color: red;"> &lt;Bla Bla Bla&gt; </span>
-          <span class="meta">11:18</span>
+          Sweet dreams!😴
+          <span class="meta">20:28</span>
         </div>
       </div>
 
-      <div class="system-chip">Marx & Engels sat on Fourth Wall, Marx & Engels had a Great Fall!</div> 
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          There are so many things you left unanswered. Feels so unsatisfactory!
+          <span class="meta">20:30 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          Who will tie up the loose ends?
+          <span class="meta">20:31 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          You know, its said that 1 in 3 readers have lost the attention span to read long texts!
+          <span class="meta">20:33</span>
+        </div>
+      </div>
+
+     <div class="message-row sent">
+        <div class="bubble">
+          <div class="name">Shanky</div>
+          <img src="media/One_in_Three_meme.jpg" alt="meme" class="chat-image">
+          <span class="meta">20:35 <span class="ticks">✓✓</span></span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          No seriously! Allow the reader to digest and read at their own pace.
+          <span class="meta">20:36</span>
+        </div>
+      </div>
+
+      <div class="message-row received">
+        <div class="bubble">
+          <div class="name">Ashutosh</div>
+          Here's the <a href="https://alnath-engore.github.io/I_hate_Mondays_Part_2/" target="_blank">link</a>. Feel free to read more about this at your convenience!
+          <span class="meta">20:37</span>
+        </div>
+      </div>
 
     </div>
   </div>
+
 
 <div class="image-overlay" id="imageOverlay">
   <img src="" class="image-full" id="imagefull">
@@ -2468,6 +1857,18 @@
 </div>
 
 <script>
+  function goBack()
+  {
+    if (window.history.length>1)
+    {
+      window.history.back();
+    }
+    else
+    {
+      window.close();
+    }
+  }
+
   function openDP()
   {
     document.getElementById("dpOverlay").classList.add("active");
